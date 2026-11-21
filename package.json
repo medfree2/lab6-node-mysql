@@ -1,0 +1,21 @@
+{
+  "name": "lab6-node-mysql",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test": "node --test test/*.test.js",
+    "test:integration": "node --test test/integration.cjs"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "express-validator": "^7.3.2",
+    "mysql2": "^3.24.6",
+    "swagger-ui-express": "^5.0.1"
+  }
+}

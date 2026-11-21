@@ -1,0 +1,515 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "LAB 6 — API Produits / MySQL",
+    "version": "1.0.0",
+    "description": "Mohammed Noureddine — mysql2/promise, CRUD, recherche et transactions. Prix lus en chaînes décimales pour conserver leur précision."
+  },
+  "paths": {
+    "/api/products": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Lister products",
+        "responses": {
+          "200": {
+            "description": "Succès"
+          },
+          "400": {
+            "description": "Données invalides"
+          },
+          "404": {
+            "description": "Ressource absente"
+          },
+          "409": {
+            "description": "Doublon ou catégorie liée"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Créer products",
+        "responses": {
+          "201": {
+            "description": "Succès"
+          },
+          "400": {
+            "description": "Données invalides"
+          },
+          "404": {
+            "description": "Ressource absente"
+          },
+          "409": {
+            "description": "Doublon ou catégorie liée"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/products/{id}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Consulter products",
+        "responses": {
+          "200": {
+            "description": "Succès"
+          },
+          "400": {
+            "description": "Données invalides"
+          },
+          "404": {
+            "description": "Ressource absente"
+          },
+          "409": {
+            "description": "Doublon ou catégorie liée"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Remplacer products",
+        "responses": {
+          "200": {
+            "description": "Succès"
+          },
+          "400": {
+            "description": "Données invalides"
+          },
+          "404": {
+            "description": "Ressource absente"
+          },
+          "409": {
+            "description": "Doublon ou catégorie liée"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductInput"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Supprimer products",
+        "responses": {
+          "204": {
+            "description": "Succès"
+          },
+          "400": {
+            "description": "Données invalides"
+          },
+          "404": {
+            "description": "Ressource absente"
+          },
+          "409": {
+            "description": "Doublon ou catégorie liée"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ]
+      }
+    },
+    "/api/categories": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Lister categories",
+        "responses": {
+          "200": {
+            "description": "Succès"
+          },
+          "400": {
+            "description": "Données invalides"
+          },
+          "404": {
+            "description": "Ressource absente"
+          },
+          "409": {
+            "description": "Doublon ou catégorie liée"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Créer categories",
+        "responses": {
+          "201": {
+            "description": "Succès"
+          },
+          "400": {
+            "description": "Données invalides"
+          },
+          "404": {
+            "description": "Ressource absente"
+          },
+          "409": {
+            "description": "Doublon ou catégorie liée"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoryInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/categories/{id}": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Consulter categories",
+        "responses": {
+          "200": {
+            "description": "Succès"
+          },
+          "400": {
+            "description": "Données invalides"
+          },
+          "404": {
+            "description": "Ressource absente"
+          },
+          "409": {
+            "description": "Doublon ou catégorie liée"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Remplacer categories",
+        "responses": {
+          "200": {
+            "description": "Succès"
+          },
+          "400": {
+            "description": "Données invalides"
+          },
+          "404": {
+            "description": "Ressource absente"
+          },
+          "409": {
+            "description": "Doublon ou catégorie liée"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoryInput"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Supprimer categories",
+        "responses": {
+          "204": {
+            "description": "Succès"
+          },
+          "400": {
+            "description": "Données invalides"
+          },
+          "404": {
+            "description": "Ressource absente"
+          },
+          "409": {
+            "description": "Doublon ou catégorie liée"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ]
+      }
+    },
+    "/api/products/search": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Rechercher, filtrer, paginer et trier",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Casque"
+          },
+          {
+            "name": "minPrice",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            },
+            "example": 0
+          },
+          {
+            "name": "maxPrice",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            },
+            "example": 100
+          },
+          {
+            "name": "categoryId",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 10
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 0
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "price"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "asc"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "data, total, limit, offset"
+          },
+          "400": {
+            "description": "Filtres invalides"
+          }
+        }
+      }
+    },
+    "/api/products/with-category": {
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Transaction : créer produit et catégorie si absente",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductWithCategory"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Transaction validée"
+          },
+          "400": {
+            "description": "Données invalides"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ProductInput": {
+        "type": "object",
+        "required": [
+          "name",
+          "price"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 150,
+            "example": "Casque audio"
+          },
+          "price": {
+            "type": "number",
+            "exclusiveMinimum": true,
+            "maximum": 99999999.99,
+            "example": 59.99,
+            "minimum": 0
+          },
+          "category_id": {
+            "type": "integer",
+            "nullable": true,
+            "minimum": 1,
+            "example": 1
+          }
+        }
+      },
+      "CategoryInput": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 100,
+            "example": "Audio"
+          }
+        }
+      },
+      "ProductWithCategory": {
+        "type": "object",
+        "required": [
+          "name",
+          "price",
+          "categoryName"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 150,
+            "example": "Casque audio"
+          },
+          "price": {
+            "type": "number",
+            "exclusiveMinimum": true,
+            "maximum": 99999999.99,
+            "example": 59.99,
+            "minimum": 0
+          },
+          "categoryName": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 100,
+            "example": "Audio"
+          }
+        }
+      }
+    }
+  }
+}
