@@ -141,7 +141,3 @@ Ces captures proviennent de l’API exécutée et de ses résultats réels, sans
 ## Compléments au support
 
 Swagger et la collection Postman facilitent la démonstration. Le projet corrige également la vérification des catégories utilisées, conserve les bornes de prix égales à zéro et gère les erreurs internes avec HTTP 500. L’API est pédagogique et ne comporte pas d’authentification.
-
-## بالدارجة
-
-هاد التطبيق كيسجل المنتوجات والتصنيفات فقاعدة البيانات، وكيبقاو محفوظين حتى إلا توقف الخادم. كل منتوج يقدر يكون تابع لتصنيف واحد. ملي كنصاوبو تصنيف ومنتوج مع بعضياتهم، يا إما كيتسجلو بجوج، يا إما كتتلغى العملية كاملة إلا وقع خطأ. الاختبارات تأكدو من الإضافة والتعديل والحذف والبحث ومن إلغاء العملية ملي كتفشل.
